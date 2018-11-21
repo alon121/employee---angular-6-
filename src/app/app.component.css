@@ -1,0 +1,28 @@
+h1 {
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
+}
+
+h1 {
+    padding: 16px;
+}
+
+.jumbotron {
+    padding: 10px;
+    text-align: center;
+    background-color: #007bff;
+}
+
+table {
+    margin: 0 auto;
+}
+
+tr,
+td,
+th {
+    border: 1px solid black;
+    padding: 6px;
+}
+
+.btn {
+    margin: 5px;
+}

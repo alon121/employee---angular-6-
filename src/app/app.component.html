@@ -1,0 +1,147 @@
+<nav class="navbar navbar-expand-lg navbar-light ">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+            <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-item btn" (click)="sortByName()">sort by name</a>
+            <a class="nav-item nav-link" (click)="sortBysalary()" href="#">sort by salary</a>
+            <a class="nav-item btn" (click)="sortByGender()">sort by gender</a>
+        </div>
+    </div>
+</nav>
+<!-- EDIT BOX -->
+<div class="modal" id="addedit">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">{{editMode? "EDIT EMPLOYEE": "ADD EMPLOYEE"}} </h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <label for="name"> first name  
+                <input type="text" name="name" [(ngModel)]="itemModel.first_name"></label>
+                <label for="lname"> last name 
+                <input type="text" name="lname" [(ngModel)]="itemModel.last_name"> </label>
+                <label for="mail"> email  
+                <input type="email" name="mail" [(ngModel)]="itemModel.email"> </label>
+                <label for="gender"> gender  
+                <select name="gender" [(ngModel)]="itemModel.gender">
+                        <option value="male">male</option>
+                        <option value="female">female</option>
+                        <option value="others">others..</option>
+                      </select></label>
+                <label for="date"> birthday  
+                <input type="date" name="date" [(ngModel)]="itemModel.birthdate"></label>
+            </div>
+            <div class="modal-footer">
+                <button *ngIf="editMode==true" type="button" class="btn" data-dismiss="modal">OK</button>
+                <button *ngIf="editMode==false" (click)="AddEmployee()" type="button" class="btn" data-dismiss="modal">OK</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- DELETE  BOX -->
+<div class="modal" id="delete">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">DELETE EMPLOYEE</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                ARE YOU SURE ?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger " (click)="deleterow(element)" data-dismiss="modal">YES</button>
+                <button type="button" class="btn btn-success  " data-dismiss="modal">NO,OOPS!</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- PAY BOX -->
+<div class="modal" id="pay">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Payment</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <label for="payment"> give money
+                <input type="text" name="payment" id="payment" [(ngModel)]="payment"  >
+                </label> </div>
+            <div class="modal-footer">
+                <button type="button" (click)="pay(element)" class="btn btn-success" data-dismiss="modal">PAY</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="jumbotron">
+    <h1 class="display-4">Hello, SuperApp!</h1>
+    <p class="lead"> Welcome to {{ title }}!</p>
+    <hr class="my-4">
+    <p>It's excersice in angular</p>
+</div>
+
+<div class="container">
+
+    <button class="btn" (click)="itemModel={}; editMode=false" data-toggle="modal" data-target="#addedit"> add employee </button>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col"> select all
+
+                    <input type="checkbox" />
+
+                </th>
+                <th scope="col">first_name</th>
+                <th scope="col">last_name</th>
+                <th scope="col">email</th>
+                <th scope="col">gender</th>
+                <th scope="col">birthdate</th>
+                <th scope="col">salary</th>
+                <th scope="col"> change </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of data;  let i=index">
+
+                <th scope="row">
+                    <input type="checkbox"> </th>
+
+                <td>
+                    {{item.first_name}}
+                </td>
+                <td>
+                    {{item.last_name}}
+                </td>
+                <td>
+                    {{item.email}}
+                </td>
+                <td>
+                    {{item.gender}}
+                </td>
+                <td>
+                    {{item.birthdate }}
+                </td>
+                <td>
+                    {{item.salary}}
+                </td>
+                <td>
+                    <button class="btn" (click)="itemModel = item;editMode=true" class="btn btn-primary" data-toggle="modal" data-target="#addedit">edit </button>
+                    <button class="btn" (click)="element = i" class="btn btn-primary" data-toggle="modal" data-target="#delete">delete </button>
+                    <button class="btn" (click)="element = item" class="btn btn-primary" data-toggle="modal" data-target="#pay">pay </button>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+
+
+</div>
