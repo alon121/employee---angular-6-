@@ -67,6 +67,16 @@ sortByName(){
   this.data = this.data.sort((e1,e2) => e1.first_name.localeCompare(e2.first_name));
 }
 
+sortByLastName(){
+  this.data = this.data.sort((e1,e2) => e1.last_name.localeCompare(e2.last_name));
+}
+sortBymail(){
+  this.data = this.data.sort((e1,e2) => e1.email.localeCompare(e2.email));
+}
+sortBybirth(){
+  this.data = this.data.sort((e1,e2) => e1.birthdate.localeCompare(e2.birthdate));
+}
+
 sortByGender(){
   this.data = this.data.sort((e1,e2) => e1.gender.localeCompare(e2.gender));
 }
